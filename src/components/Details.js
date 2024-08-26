@@ -25,6 +25,8 @@ export default function Details(props) {
     const handleEventData = (data) => { setEventData(data) };
     const [allChats, setAllChats] = useState([{ content: `Hello, ask me something about ${stockName}`, role: "system" }])
 
+
+
     useEffect(() => {
         axios.get(`https://amandanwadukwe.a2hosted.com/loud-mouth-finance/stock-details?activeStock=${props.symbol}`)
             .then(res => {
@@ -83,6 +85,7 @@ export default function Details(props) {
     }
 
     return <div className={props.symbol.length > 0 ? 'details-container show' : 'details-container hide'}>
+        <button type="button" className="general-button" onClick={()=>{props.sendData("");}}>Back</button>
         <div className="details">
             <span className="tooltip" title="">{stockName}</span><br></br>
             <span className="tooltip" title=""><span>Source</span> {source}</span><br></br>

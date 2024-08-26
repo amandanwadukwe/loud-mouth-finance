@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 
-export default function GeneralMarket() {
+export default function GeneralMarket(props) {
   const [VIXData, SetVIXData] = useState({});
   const [verdict, setVerdict] = useState({}); // Corrected destructuring
   const [verdictError, setVerdictError] = useState('');
@@ -38,7 +38,7 @@ export default function GeneralMarket() {
       });
   }
 
-  return <div className="general-market">
+  return <div className={props.symbol.length <= 0 ? 'general-market show' : 'general-market hide'}>
     <h3>Market Right Now</h3>
     <span>{VIXData.shortName}</span>
     <p className="tooltip" title="shows the volatility index's lowest and highest values over the past year. Meaning: A higher range suggests greater market volatility, which can indicate higher risk or uncertainty in the market. When the VIX is near the upper end of this range, it might suggest increased market fear, which could lead to more conservative investment strategies. Conversely, a lower VIX indicates calmer markets, which might encourage more aggressive investment approaches.">52 Week Range<br></br><span>Low:{VIXData.fiftyTwoWeekLow}</span><span>High: {VIXData.fiftyTwoWeekHigh}</span></p>

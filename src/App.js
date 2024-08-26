@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import wick from './resources/wick.svg';
 import piggyBank from './resources/piggyBank.svg';
 import planner from './resources/planner.svg'
@@ -21,18 +21,18 @@ function App() {
   const options = ['', 'NVDA', 'AAPL', 'AVGO'];
   const bigMovers = ['NVDA', 'AAPL', 'AVGO'];
   const [symbolXtraStep, setSymbolXtraStep] = useState('');
+  const [loading, setLoading] = useState(true);
 
+  const handleSetSymbol = (data) => { setSymbol(data) };
 
-  // function getMajorEvent(){
-  //   axios.get('http://localhost:5000')
-  //   .then(res => {console.log(res.data);
-  //     setEventName(res.data.next_big_event.event_name);
-  //     setEventDate(res.data.next_big_event.event_date);
-  //     setImpact(res.data.next_big_event.predicted_impact.description);
-  //     setImpactStatus(res.data.next_big_event.predicted_impact.RAG_status);
-  //   })
-  //   .catch(err => console.log("err", err))
-  //   }
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setLoading(false);
+    }, 5000); // 2 seconds
+
+    return () => clearTimeout(timer);
+  }, []);
+
 
   function makeInvestmentsVisible() {
 
@@ -62,21 +62,23 @@ function App() {
         <h1 className="logo">Finance</h1>
       </header>
       <main>
+      <div className={loading ? 'pulse' : ''}>
         <div className="hero">
           <span>Pushing the boundaries of tech to deliver</span>
           <span className="fin-emph">Easy Finance</span>
+        </div>
         </div>
         <div>
 
         </div>
         <div className="main-menu" >
-          <div className="menu-img-containter" onClick={() => makeInvestmentsVisible()}><img className="menu-img" src={wick} alt='' /><p>Investments</p></div>
-          <div className="menu-img-containter" onClick={() => makePlanVisible()}><img className="menu-img" src={piggyBank} alt='' /><p>Plan</p></div>
-          <div className="menu-img-containter" onClick={() => makeSavingsVisible()}><img className="menu-img" src={planner} alt='' /><p>Savings</p></div>
+          <div className="menu-img-container" onClick={() => makeInvestmentsVisible()}><img className="menu-img" src={wick} alt='' /><p>Investments</p></div>
+          <div className="menu-img-container" onClick={() => makePlanVisible()}><img className="menu-img" src={piggyBank} alt='' /><p>Plan</p></div>
+          <div className="menu-img-container" onClick={() => makeSavingsVisible()}><img className="menu-img" src={planner} alt='' /><p>Savings</p></div>
         </div>
         <div className={showInvestments ? "show" : "hide"} >
-        <GeneralMarket />
-        <div className="big-movers">
+        <GeneralMarket symbol={symbol} />
+        <div className={symbol.length <= 0 ? 'big-movers show' : 'big-movers hide'}>
           <span className="fin-emph" style={{ lineHeight: `10rem` }}>Big Movers</span>
           <div className="movers">
             {bigMovers.map(mover => {
@@ -91,13 +93,13 @@ function App() {
               }}>Launch Health Check</button></div>
             })}</div></div>
         <div>
-          <div className="health-checker">
+          <div className={symbol.length <= 0 ? 'health-checker show' : 'health-checker hide'}>
             <span className="fin-emph">Health Check</span><br></br>
             <div className="search">
               <select onChange={e => setSymbolXtraStep(e.target.value)}>{options.map(opt => <option key={opt}>{opt}</option>)}</select><button onClick={() => setSymbol(symbolXtraStep)}>Launch Check</button>
             </div>
           </div>
-          <Details symbol={symbol} />
+          <Details symbol={symbol} sendData={handleSetSymbol} />
           {/* <Verdict symbol={symbol} />
       <EventInfo symbol={symbol} /> */}
         </div>
@@ -107,7 +109,18 @@ function App() {
         </div>
         <div className={showPlan ? "show" : "hide"}></div>
       </main>
-      <footer></footer>
+      <footer>
+    <div className="main-div">
+        <h2>Your Trusted Financial Advisor</h2>
+        <p>
+            Guiding you with expert advice tailored to your unique financial goals. Secure, reliable, and designed for the modern investor.
+        </p>
+        <p>
+            Trusted Guidance | Clear Insights | Modern Expertise
+        </p>
+    </div>
+</footer>
+
     </div>
   );
 }
