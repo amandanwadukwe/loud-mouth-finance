@@ -18,16 +18,17 @@ export default function Verdict(props){
     function getVerdictData(){
             axios.get(`https://amandanwadukwe.a2hosted.com/loud-mouth-finance/stock-market-now?activeStock=${props.symbol}`)
               .then(res => {
-                try {
+                // try {
                     
-                    if (isDataJSON) {
+                    // if (isDataJSON) {
                         setVerdictData(res.data);
-                    } else {
-                        throw new Error("Data is not JSON");
-                    }
-                } catch (err) {
-                    setVerdictDataError("We're sorry this information is not available at the moment");
-                }
+                        props.sendData(res.data);
+                    // } else {
+                    //     throw new Error("Data is not JSON");
+                    // }
+                // } catch (err) {
+                //     setVerdictDataError("We're sorry this information is not available at the moment");
+                // }
                 
 
 
@@ -56,6 +57,6 @@ export default function Verdict(props){
     <p>Loading data or no recommendations available.</p>
   )
 )}
-
+{/* <button onClick={() => }>Send Data</button>; */}
     </div>
 }

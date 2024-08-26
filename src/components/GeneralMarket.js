@@ -23,7 +23,7 @@ export default function GeneralMarket() {
   }
 
   function getVerdictData() {
-    axios.get(`http://localhost:5000/market-now`)
+    axios.get(`https://amandanwadukwe.a2hosted.com/loud-mouth-finance/market-now`)
       .then(res => {
         try{
             console.log(JSON.parse(res.data));

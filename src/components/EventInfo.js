@@ -16,6 +16,7 @@ export default function EventInfo(props){
                 try{
                     console.log('Event',res.data.next_big_event)
                     setEventData(res.data.next_big_event);
+                    props.sendData(res.data.next_big_event);
 
                 } catch (err){
                     setEventDataError("We're sorry this information is not available at the moment")
