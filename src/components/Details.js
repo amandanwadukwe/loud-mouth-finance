@@ -3,6 +3,8 @@ import Verdict from './Verdict.js';
 import EventInfo from './EventInfo.js';
 import axios from 'axios';
 import defaultThumbnail from '../resources/thumbnail-default.jpg';
+import { ReactStocks } from "react-stocks";
+
 
 export default function Details(props) {
     // const [details, setDetails] = useState({});
@@ -86,6 +88,7 @@ export default function Details(props) {
 
     return <div className={props.symbol.length > 0 ? 'details-container show' : 'details-container hide'}>
         <button type="button" className="general-button" onClick={()=>{props.sendData("");}}>Back</button>
+        <ReactStocks doPoll tickers={[props.symbol]} />
         <div className="details">
             <span className="tooltip" title="">{stockName}</span><br></br>
             <span className="tooltip" title=""><span>Source</span> {source}</span><br></br>
