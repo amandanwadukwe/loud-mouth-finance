@@ -18,8 +18,8 @@ function App() {
   const [showPlan, setShowPlan] = useState(false);
   const [showSavings, setShowSavings] = useState(false);
   const [symbol, setSymbol] = useState('');
-  const options = ['', 'NVDA', 'SMCI', 'AVGO','DELL'];
-  const bigMovers = [ 'AAPL','AMD','ANET','AVGO','DELL','HPE','NVDA','SMCI'];
+  const options = ['', 'AAPL','AMD','ANET','AVGO','DELL','HPE','NVDA','SMCI'];
+  const bigMovers = ['NVDA', 'SMCI', 'AVGO','DELL' ];
   const [symbolXtraStep, setSymbolXtraStep] = useState('');
   const [loading, setLoading] = useState(true);
 
