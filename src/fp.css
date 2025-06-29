@@ -1,0 +1,303 @@
+/* Base Styles */
+.financial-planner {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem;
+    color: #2d3748;
+    line-height: 1.6;
+  }
+  
+  h2, h3, h4 {
+    color: #1a365d;
+    margin-bottom: 1.5rem;
+  }
+  
+  h2 {
+    font-size: 1.8rem;
+    font-weight: 700;
+  }
+  
+  h3 {
+    font-size: 1.4rem;
+    font-weight: 600;
+  }
+  
+  h4 {
+    font-size: 1.2rem;
+    font-weight: 600;
+  }
+  
+  /* Progress Steps */
+  .progress-steps {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin-bottom: 3rem;
+  }
+  
+  .step {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: #edf2f7;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+  
+  .step.active {
+    background: #4299e1;
+    color: white;
+    transform: scale(1.1);
+  }
+  
+  /* Form Sections */
+  .section-container {
+    background: white;
+    border-radius: 12px;
+    padding: 2rem;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+    margin-bottom: 2rem;
+  }
+  
+  .input-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    margin-bottom: 1rem;
+    align-items: center;
+  }
+  
+  .input-row input, 
+  .input-row select {
+    flex: 1;
+    min-width: 120px;
+    padding: 0.75rem;
+    border: 1px solid #e2e8f0;
+    border-radius: 8px;
+    font-size: 1rem;
+    transition: all 0.2s ease;
+  }
+  
+  .input-row input:focus, 
+  .input-row select:focus {
+    outline: none;
+    border-color: #4299e1;
+    box-shadow: 0 0 0 3px rgba(66, 153, 225, 0.2);
+  }
+  
+  .input-row button {
+    background: #e53e3e;
+    color: white;
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+  }
+  
+  .input-row button:hover {
+    background: #c53030;
+  }
+  
+  /* Buttons */
+  button {
+    background: #4299e1;
+    color: white;
+    border: none;
+    padding: 0.75rem 1.5rem;
+    border-radius: 8px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+  }
+  
+  button:hover {
+    background: #3182ce;
+    transform: translateY(-2px);
+  }
+  
+  button:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+    transform: none;
+  }
+  
+  /* Goals Section */
+  .goals-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+  }
+  
+  .goal-card {
+    background: white;
+    border-radius: 12px;
+    padding: 1.5rem;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+    transition: all 0.3s ease;
+  }
+  
+  .goal-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+  }
+  
+  .slider-container {
+    margin: 1rem 0;
+  }
+  
+  .slider-container input[type="range"] {
+    width: 100%;
+    margin: 0.5rem 0;
+  }
+  
+  .goal-result {
+    font-weight: 600;
+    color: #2b6cb0;
+    margin: 1rem 0;
+    padding: 0.5rem;
+    background: #ebf8ff;
+    border-radius: 6px;
+  }
+  
+  /* Insights Section */
+  .insights-container {
+    margin-top: 2rem;
+    display: grid;
+    gap: 1.5rem;
+  }
+  
+  .insight-card {
+    background: white;
+    border-radius: 12px;
+    padding: 1.5rem;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+  }
+  
+  .strategy-toggle {
+    display: flex;
+    gap: 0.5rem;
+    margin: 1rem 0;
+  }
+  
+  .strategy-toggle button {
+    flex: 1;
+    background: #edf2f7;
+    color: #4a5568;
+  }
+  
+  .strategy-toggle button.active {
+    background: #4299e1;
+    color: white;
+  }
+  
+  .debt-list {
+    display: grid;
+    gap: 0.75rem;
+    margin: 1rem 0;
+  }
+  
+  .debt-item {
+    display: flex;
+    justify-content: space-between;
+    padding: 0.75rem;
+    background: #f7fafc;
+    border-radius: 6px;
+  }
+  
+  /* Navigation */
+  .navigation-buttons {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 2rem;
+  }
+  
+  /* Modal */
+  .modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+  }
+  
+  .modal-content {
+    background: white;
+    border-radius: 12px;
+    padding: 2rem;
+    max-width: 600px;
+    width: 90%;
+    max-height: 90vh;
+    overflow-y: auto;
+  }
+  
+  /* Responsive */
+  @media (max-width: 768px) {
+    .financial-planner {
+      padding: 1rem;
+    }
+    
+    .input-row {
+      flex-direction: column;
+      align-items: stretch;
+    }
+    
+    .navigation-buttons {
+      flex-direction: column;
+      gap: 1rem;
+    }
+    
+    button {
+      width: 100%;
+    }
+  }
+  
+  /* Animations */
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+  
+  .fade-in {
+    animation: fadeIn 0.3s ease-out;
+  }
+  
+  /* Utility Classes */
+  .mt-1 { margin-top: 0.5rem; }
+  .mt-2 { margin-top: 1rem; }
+  .mt-3 { margin-top: 1.5rem; }
+  .mt-4 { margin-top: 2rem; }
+  
+  .text-center { text-align: center; }
+  .text-success { color: #38a169; }
+  .text-warning { color: #dd6b20; }
+  .text-danger { color: #e53e3e; }
+  
+  .badge {
+    display: inline-block;
+    padding: 0.25rem 0.5rem;
+    border-radius: 9999px;
+    font-size: 0.75rem;
+    font-weight: 600;
+  }
+  
+  .badge-asset {
+    background: #ebf8ff;
+    color: #3182ce;
+  }
+  
+  .badge-liability {
+    background: #fff5f5;
+    color: #e53e3e;
+  }

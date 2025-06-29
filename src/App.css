@@ -1,4 +1,4 @@
-
+/* 
 
 .thumbnail{
   width:150px;
@@ -23,19 +23,19 @@
   margin-top:2rem;
   padding:10rem 1rem 1rem;
   /* padding-top:10rem; */
-  /* padding:2rem; */
+  /* padding:2rem; 
   color:#fff;
   font-size: 24px;
   line-height: 50px;
   background-image: url('./resources/hero.jpg');
-  background-size: cover; /* This will ensure the image covers the entire div */
-  background-position: center; /* This will center the image */
+  background-size: cover; /* This will ensure the image covers the entire div 
+  background-position: center; /* This will center the image 
 }
 
 .hero span {
-  background-color: rgba(255, 255, 255, 0.6); /* Semi-transparent black background */
+  background-color: rgba(255, 255, 255, 0.6); /* Semi-transparent black background 
   color:#022350;
-  padding: 0.2rem; /* Adds padding around the text */
+  padding: 0.2rem; /* Adds padding around the text 
   margin:.5rem 0;
 }
 
@@ -113,7 +113,7 @@
   box-shadow:1px 1px 3px rgba(0,0,0,0.2)
 }
 .mover button, .general-button{
-  /* width:100%; */
+  /* width:100%; 
   background-color: #fff;
   border:1px solid black;
   padding:.5rem;
@@ -221,7 +221,7 @@
   transition:all .2s ease-in-out;
 } */
 
-.course-title{
+/* .course-title{
   text-align: center;
   font-weight:bold;
   font-size:1.5rem;
@@ -234,7 +234,7 @@
 .course-image{
   width:150px;
   height:150px;
-}
+} 
 
 footer{
   width:100vw;
@@ -278,4 +278,4 @@ footer .main-div p:nth-child(2){
       top: 0;
       right: 0;
     }
-}
+} */
