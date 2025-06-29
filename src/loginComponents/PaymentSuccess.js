@@ -50,7 +50,7 @@ const PaymentSuccess = () => {
 
         // Make API call to verify payment and update user plan
         console.log("Sending verification request to API");
-        const response = await api.post('/payments/verify', {
+        const response = await api.post('/api/payments/verify', {
           planId,
           sessionId
         }, {

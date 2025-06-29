@@ -60,9 +60,10 @@ const BankStatementUploader = () => {
       files.forEach(file => {
         formData.append('images', file);
       });
+      //https://amandanwadukwe.a2hosted.com/loud-mouth-finance#
 
       const response = await axios.post(
-        'https://wonderful-speculoos-c86402.netlify.app/api/summarize-bank-statement', // Updated correct endpoint
+        'https://amandanwadukwe.a2hosted.com/loud-mouth-finance/api/summarize-bank-statement', // Updated correct endpoint
         formData, 
         {
           headers: {

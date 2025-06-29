@@ -64,7 +64,7 @@ export const AuthProvider = ({ children }) => {
     }
     
     try {
-      const { data } = await api.post('https://wonderful-speculoos-c86402.netlify.app/api/users/login', formData);
+      const { data } = await api.post('https://amandanwadukwe.a2hosted.com/loud-mouth-finance/api/users/login', formData);
       localStorage.setItem('jwt', data.token);
       localStorage.setItem('user', JSON.stringify(data.user));
       setUser(data.user);
