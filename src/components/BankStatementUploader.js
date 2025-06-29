@@ -62,7 +62,7 @@ const BankStatementUploader = () => {
       });
 
       const response = await axios.post(
-        'http://localhost:5000/api/summarize-bank-statement', // Updated correct endpoint
+        'https://wonderful-speculoos-c86402.netlify.app/api/summarize-bank-statement', // Updated correct endpoint
         formData, 
         {
           headers: {

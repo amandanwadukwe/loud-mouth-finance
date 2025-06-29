@@ -12,7 +12,7 @@ const handleSubmit = async (e) => {
     console.log("Submitting with:", { email, password }); // Add this debug line
     
     try {
-      const response = await fetch('http://localhost:5000/api/users/login', {
+      const response = await fetch('https://wonderful-speculoos-c86402.netlify.app/users/login', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
