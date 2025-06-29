@@ -12,7 +12,7 @@ const handleSubmit = async (e) => {
     console.log("Submitting with:", { email, password }); // Add this debug line
     
     try {
-      const response = await fetch('https://amandanwadukwe.a2hosted.com/loud-mouth-finance/users/login', {
+      const response = await fetch('https://amandanwadukwe.a2hosted.com/loud-mouth-finance/api/users/login', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
