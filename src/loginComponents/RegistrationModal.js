@@ -2,6 +2,7 @@ import { useState } from 'react';
 import Modal from 'react-modal';
 import { useAuth } from './AuthContext';
 import { toast } from 'react-toastify';
+import '../styles/RegistrationModal.css'; // Import the CSS
 
 Modal.setAppElement('#root'); // Set this to your app's root element ID
 
@@ -101,9 +102,11 @@ const RegistrationModal = ({ isOpen, onRequestClose = () => {}, switchToLogin = 
       isOpen={isOpen}
       onRequestClose={handleClose}
       contentLabel="Registration Modal"
+      className="registration-modal"
+      overlayClassName="modal-overlay"
     >
       <div className="modal-header">
-        <h2>Create Account</h2>
+        <h2 className="modal-title">Create Account</h2>
         <button 
           onClick={handleClose}
           className="close-button"
@@ -113,55 +116,55 @@ const RegistrationModal = ({ isOpen, onRequestClose = () => {}, switchToLogin = 
         </button>
       </div>
       
-      <form onSubmit={handleSubmit} className="auth-form">
+      <form onSubmit={handleSubmit} className="registration-form">
         <div className="form-group">
-          <label htmlFor="name">Full Name</label>
+          <label htmlFor="name" className="form-label">Full Name</label>
           <input
             type="text"
             id="name"
             name="name"
             value={formData.name}
             onChange={handleChange}
-            className={errors.name ? 'error' : ''}
+            className={`form-input ${errors.name ? 'input-error' : ''}`}
           />
           {errors.name && <span className="error-message">{errors.name}</span>}
         </div>
 
         <div className="form-group">
-          <label htmlFor="email">Email</label>
+          <label htmlFor="email" className="form-label">Email</label>
           <input
             type="email"
             id="email"
             name="email"
             value={formData.email}
             onChange={handleChange}
-            className={errors.email ? 'error' : ''}
+            className={`form-input ${errors.email ? 'input-error' : ''}`}
           />
           {errors.email && <span className="error-message">{errors.email}</span>}
         </div>
 
         <div className="form-group">
-          <label htmlFor="password">Password</label>
+          <label htmlFor="password" className="form-label">Password</label>
           <input
             type="password"
             id="password"
             name="password"
             value={formData.password}
             onChange={handleChange}
-            className={errors.password ? 'error' : ''}
+            className={`form-input ${errors.password ? 'input-error' : ''}`}
           />
           {errors.password && <span className="error-message">{errors.password}</span>}
         </div>
 
         <div className="form-group">
-          <label htmlFor="confirmPassword">Confirm Password</label>
+          <label htmlFor="confirmPassword" className="form-label">Confirm Password</label>
           <input
             type="password"
             id="confirmPassword"
             name="confirmPassword"
             value={formData.confirmPassword}
             onChange={handleChange}
-            className={errors.confirmPassword ? 'error' : ''}
+            className={`form-input ${errors.confirmPassword ? 'input-error' : ''}`}
           />
           {errors.confirmPassword && (
             <span className="error-message">{errors.confirmPassword}</span>
@@ -178,11 +181,12 @@ const RegistrationModal = ({ isOpen, onRequestClose = () => {}, switchToLogin = 
       </form>
 
       <div className="auth-footer">
-        <p>
+        <p className="login-prompt">
           Already have an account?{' '}
           <button 
             onClick={handleSwitchToLogin}
-            className="switch-button"
+            className="login-link"
+            type="button"
           >
             Log In
           </button>

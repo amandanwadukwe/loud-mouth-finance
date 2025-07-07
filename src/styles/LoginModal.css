@@ -1,0 +1,211 @@
+/* Modal Overlay (Background) */
+.modal-overlay {
+    background-color: rgba(0, 0, 0, 0.75) !important;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+    opacity: 0;
+    transition: opacity 200ms ease-in-out;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+  }
+  
+  .ReactModal__Overlay--after-open {
+    opacity: 1;
+  }
+  
+  .ReactModal__Overlay--before-close {
+    opacity: 0;
+  }
+  
+  /* Modal Content */
+  .login-modal {
+    position: relative !important;
+    top: auto !important;
+    left: auto !important;
+    right: auto !important;
+    bottom: auto !important;
+    background-color: #fff !important;
+    border-radius: 8px !important;
+    border: none !important;
+    padding: 2rem !important;
+    width: 90% !important;
+    max-width: 450px !important;
+    max-height: 90vh !important;
+    overflow-y: auto !important;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15) !important;
+    margin: 0 auto;
+    transform: translateY(20px);
+    transition: transform 200ms ease-in-out;
+  }
+  
+  .ReactModal__Content--after-open {
+    transform: translateY(0);
+  }
+  
+  .ReactModal__Content--before-close {
+    transform: translateY(20px);
+  }
+  
+  /* Modal Header */
+  .modal-title {
+    color: #022350;
+    font-size: 1.6rem;
+    font-weight: 600;
+    margin-bottom: 1.5rem;
+    text-align: center;
+    position: relative;
+    padding-bottom: 0.75rem;
+  }
+  
+  .modal-title::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60px;
+    height: 3px;
+    background: linear-gradient(90deg, #022350, #3e92cc);
+    border-radius: 2px;
+  }
+  
+  /* Form Styling */
+  .login-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+  }
+  
+  .form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+  
+  .form-label {
+    font-weight: 500;
+    color: #4a5568;
+    font-size: 0.95rem;
+  }
+  
+  .form-input {
+    padding: 0.75rem 1rem;
+    border: 1px solid #e0e5ec;
+    border-radius: 6px;
+    font-size: 1rem;
+    color: #2d3748;
+    width: 100%;
+    transition: border-color 0.2s, box-shadow 0.2s;
+  }
+  
+  .form-input:focus {
+    outline: none;
+    border-color: #3e92cc;
+    box-shadow: 0 0 0 3px rgba(62, 146, 204, 0.2);
+  }
+  
+  /* Button Styling */
+  .submit-button {
+    background-color: #022350;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    padding: 0.75rem 1rem;
+    font-weight: 600;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.2s, transform 0.2s;
+    margin-top: 0.5rem;
+  }
+  
+  .submit-button:hover {
+    background-color: #01142e;
+    transform: translateY(-2px);
+  }
+  
+  .cancel-button {
+    background-color: #f0f7ff;
+    color: #022350;
+    border: 1px solid #d6e8fc;
+    border-radius: 6px;
+    padding: 0.75rem 1rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background-color 0.2s;
+    margin-top: 0.5rem;
+  }
+  
+  .cancel-button:hover {
+    background-color: #e1eeff;
+  }
+  
+  /* Register Link Area */
+  .register-prompt {
+    text-align: center;
+    margin-top: 1.5rem;
+    color: #4a5568;
+    font-size: 0.95rem;
+  }
+  
+  .register-link {
+    background: none !important;
+    border: none !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    font-weight: 600 !important;
+    color: #3e92cc !important;
+    cursor: pointer !important;
+    transition: color 0.2s !important;
+    text-decoration: underline;
+  }
+  
+  .register-link:hover {
+    color: #022350 !important;
+  }
+  
+  /* Close Button (X) */
+  .close-button {
+    position: absolute;
+    top: 0.75rem;
+    right: 0.75rem;
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    color: #a0aec0;
+    cursor: pointer;
+    transition: color 0.2s;
+  }
+  
+  .close-button:hover {
+    color: #4a5568;
+  }
+  
+  /* Responsive Adjustments */
+  @media (max-width: 576px) {
+    .login-modal {
+      padding: 1.5rem !important;
+      width: 95% !important;
+    }
+    
+    .modal-title {
+      font-size: 1.4rem;
+    }
+    
+    .form-label {
+      font-size: 0.9rem;
+    }
+    
+    .form-input {
+      padding: 0.7rem 0.9rem;
+    }
+    
+    .submit-button,
+    .cancel-button {
+      padding: 0.7rem 0.9rem;
+    }
+  }

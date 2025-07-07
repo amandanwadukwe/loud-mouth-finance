@@ -1,13 +1,14 @@
 import { useState } from 'react';
 import { useAuth } from './AuthContext';
 import Modal from 'react-modal';
+import '../styles/LoginModal.css'; 
 
 export const LoginModal = ({ isOpen, onClose, switchToRegister }) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const { login } = useAuth();
 
-const handleSubmit = async (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     console.log("Submitting with:", { email, password }); // Add this debug line
     
@@ -39,38 +40,43 @@ const handleSubmit = async (e) => {
   
   return (
     <Modal
-    isOpen={isOpen}
-    onRequestClose={onClose}
-    contentLabel="Login Modal"
-  >
-      <h2>Login to Your Account</h2>
-      <form onSubmit={handleSubmit}>
-        <div>
-          <label>Email</label>
+      isOpen={isOpen}
+      onRequestClose={onClose}
+      contentLabel="Login Modal"
+      className="login-modal"
+      overlayClassName="modal-overlay"
+    >
+      <button className="close-button" onClick={onClose}>×</button>
+      <h2 className="modal-title">Login to Your Account</h2>
+      <form className="login-form" onSubmit={handleSubmit}>
+        <div className="form-group">
+          <label className="form-label">Email</label>
           <input
+            className="form-input"
             type="email"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             required
           />
         </div>
-        <div>
-          <label>Password</label>
+        <div className="form-group">
+          <label className="form-label">Password</label>
           <input
+            className="form-input"
             type="password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
             required
           />
         </div>
-        <button type="submit">Login</button>
-        <button type="button" onClick={onClose}>
+        <button className="submit-button" type="submit">Login</button>
+        <button className="cancel-button" type="button" onClick={onClose}>
           Close
         </button>
         {switchToRegister && (
-          <p>
+          <p className="register-prompt">
             Don't have an account?{' '}
-            <button type="button" onClick={switchToRegister}>
+            <button className="register-link" type="button" onClick={switchToRegister}>
               Register
             </button>
           </p>
