@@ -4,6 +4,7 @@ import EventInfo from './EventInfo.js';
 import axios from 'axios';
 import defaultThumbnail from '../resources/thumbnail-default.jpg';
 import { ReactStocks } from "react-stocks";
+import '../styles/Details.css'; 
 
 
 export default function Details(props) {

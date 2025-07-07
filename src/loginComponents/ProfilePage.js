@@ -1,5 +1,5 @@
 import { useAuth } from './AuthContext';
-
+import '../styles/ProfilePage.css'; // Import your CSS styles
 export const ProfilePage = () => {
   const { logout } = useAuth();
 

@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import axios from 'axios';
+import '../styles/EventInfo.css';
 
 export default function EventInfo(props){
     const [eventData, setEventData] = useState("");

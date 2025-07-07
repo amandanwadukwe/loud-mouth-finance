@@ -45,8 +45,8 @@ export const HomePage = () => {
     <div className={`home-container ${loading ? 'pulse' : ''}`}>
       <section className="hero-section">
         <div className="hero-content">
-          <h1>Pushing the boundaries of tech to deliver <span className="fin-emph">Smart Finance</span></h1>
-          <p className="hero-tagline">Personalized financial guidance powered by cutting-edge technology</p>
+          <h1>Pushing the boundaries of tech to deliver <span className="fin-emph" style={{color:'#f5a623'}}>Smart Finance</span></h1>
+          <p className="hero-tagline">Empowering smarter money decisions through innovative technology</p>
           <div className="hero-cta">
             <Link to="/plans" className="primary-btn">Get Started</Link>
             <Link to="/about" className="secondary-btn">Learn More</Link>
@@ -55,17 +55,17 @@ export const HomePage = () => {
       </section>
 
       <section className="services-section">
-        <h2>Our Financial Services</h2>
-        <p className="section-intro">Discover tools designed to help you achieve financial freedom</p>
+        <h2>Our Financial Tools</h2>
+        <p className="section-intro">Discover technology-driven solutions to help you work toward financial freedom</p>
         
         <div className="services-grid">
           <div className="service-card">
             <div className="service-icon">
               <img src={wick} alt="Investment icon" />
             </div>
-            <h3>Smart Investments</h3>
-            <p>Data-driven portfolio recommendations tailored to your risk profile and financial goals.</p>
-            <Link to="/investments" className="service-link">Explore Investment Options</Link>
+            <h3>Smart Market</h3>
+            <p>Data-informed tools to help you explore investment strategies aligned with your goals and comfort level, no advice, just intelligent insights.</p>
+            <Link to="/market" className="service-link">Explore Investment Options</Link>
           </div>
           
           <div className="service-card">
@@ -73,7 +73,7 @@ export const HomePage = () => {
               <img src={piggyBank} alt="Financial planner icon" />
             </div>
             <h3>Financial Planning</h3>
-            <p>Comprehensive tools to map your journey toward financial independence and retirement security.</p>
+            <p>Map out your financial goals with our guided tools, from budgeting to long-term planning, built to support your journey to financial independence.</p>
             <Link to="/planner" className="service-link">Create Your Plan</Link>
           </div>
           
@@ -82,26 +82,26 @@ export const HomePage = () => {
               <img src={planner} alt="Savings icon" />
             </div>
             <h3>Savings Strategies</h3>
-            <p>Innovative approaches to maximize your savings rate and reach your financial milestones faster.</p>
+            <p>Discover smart ways to boost your savings and stay on track with your financial goals — powered by data, not advice.</p>
             <Link to="/savings" className="service-link">Optimize Your Savings</Link>
           </div>
         </div>
       </section>
       
       <section className="trust-section">
-        <h2>Trusted Financial Expertise</h2>
+        <h2>Financial freedom starts with awareness and the right tools</h2>
         <div className="trust-indicators">
           <div className="trust-item">
-            <h4>10+ Years</h4>
-            <p>Industry experience</p>
+            <h4>Over 60%</h4>
+            <p>of people feel anxious about money</p>
           </div>
           <div className="trust-item">
-            <h4>50,000+</h4>
-            <p>Satisfied clients</p>
+            <h4>Most adults</h4>
+            <p>Satisfied clientsdon’t track their spending or budget consistently</p>
           </div>
           <div className="trust-item">
-            <h4>99.8%</h4>
-            <p>Client retention</p>
+            <h4>Small improvements</h4>
+            <p> in habits lead to big long-term gain</p>
           </div>
         </div>
       </section>

@@ -53,8 +53,8 @@ export const Header = () => {
         <div className="header-container">
           <div className="logo-container">
             <Link to="/" className="logo">
-              <span className="logo-text">SentimentalTech</span>
-              <span className="logo-accent">Adviser</span>
+              <span className="logo-text">Aada</span>
+              <span className="logo-accent">Finance</span>
             </Link>
           </div>
           

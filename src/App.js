@@ -16,12 +16,12 @@ function App() {
         <AppRoutes />
         <footer>
           <div className="main-div">
-            <h2>Your Trusted Financial Advisor</h2>
+            <h2>Tech-Driven Support for Smarter Money Moves</h2>
             <p>
-              Guiding you with expert advice tailored to your unique financial goals. Secure, reliable, and designed for the modern investor.
+            We don’t offer advice, we offer powerful tools to help you make confident financial decisions, your way.
             </p>
             <p>
-              Trusted Guidance | Clear Insights | Modern Expertise
+            Independent | Insightful | Built for You
             </p>
           </div>
         </footer>

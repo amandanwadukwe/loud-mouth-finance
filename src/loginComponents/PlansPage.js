@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { useAuth } from './AuthContext';
 import { toast } from 'react-toastify';
+import '../styles/PlansPage.css'; // Assuming you have a CSS file for styling
 
 const PlansPage = () => {
   const { getPaymentLink, openLoginModal } = useAuth();

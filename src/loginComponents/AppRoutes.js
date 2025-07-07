@@ -24,7 +24,7 @@ const AppRoutes = () => {
             <SavingsSeries />
         } />
         <Route path="/planner" element={
-            <ProtectedRoute><FinancialPlanner /></ProtectedRoute> 
+            <ProtectedRoute requiredPlan="free"><FinancialPlanner /></ProtectedRoute> 
         } />
         <Route path="/payment-success" element={
           <ProtectedRoute>
@@ -34,6 +34,7 @@ const AppRoutes = () => {
         <Route path="/home" element={<Main />} />
         <Route path="/" element={<HomePage />} />
         <Route path="/statement" element={<BankStatementUploader />} />
+        <Route path="/market" element={<Main />} />
 
 
         <Route path="/payment-success" element={

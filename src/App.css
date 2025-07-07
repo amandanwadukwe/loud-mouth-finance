@@ -1,281 +1,67 @@
-/* 
-
-.thumbnail{
-  width:150px;
-  max-width:200px;
-  height:150px;
-  max-height:200px;
-  object-fit: cover;
-  margin:1px;
-}
-
-.main{
-  display:block;
-  width:80vw;
-  margin:1rem;
-}
-
-.hero {
-  width:fit-content;
-  height: fit-content;
-  display:block;
-  margin:auto;
-  margin-top:2rem;
-  padding:10rem 1rem 1rem;
-  /* padding-top:10rem; */
-  /* padding:2rem; 
-  color:#fff;
-  font-size: 24px;
-  line-height: 50px;
-  background-image: url('./resources/hero.jpg');
-  background-size: cover; /* This will ensure the image covers the entire div 
-  background-position: center; /* This will center the image 
-}
-
-.hero span {
-  background-color: rgba(255, 255, 255, 0.6); /* Semi-transparent black background 
-  color:#022350;
-  padding: 0.2rem; /* Adds padding around the text 
-  margin:.5rem 0;
-}
-
-
-
-.main-menu{
-  width:100%;
-  margin:2rem 0;
-  display:flex;
-  flex-wrap:wrap;
-  justify-content: center;
-  align-items: center;
-}
-
-.menu-img-container{
-  display:flex;
-  flex-direction:column;
-  justify-content: center;
-  align-items: center;
-}
-
-.menu-img-container .active{
-  transform:scale(1.1);
+footer {
   background-color: #022350;
-  color:#fff;
-}
-
-.menu-img-containter:hover{
-  transform:scale(1.1);
-  transition: all .2s ease-in-out;
-}
-
-.menu-img{
-  width:100px;
-  height:100px;
-  margin:1rem;
-}
-
-
-.hide{
-  display:none !important;
-}
-
-.fin-emph{
-  display:block;
-  font-size:3rem;
-  font-weight:bold;
-  color:#022350;
-}
-
-.details-container{
-  width:80vw;
-  margin:auto;
-  display:flex;
-  flex-wrap:wrap;
-  justify-content: space-around;
-  align-items: flex-start;
+  color: #fff;
+  padding: 2rem 0;
+  margin-top: 3rem;
   position: relative;
 }
 
-.big-movers, .health-checker, .courses{
-  width:90vw;
-  margin:auto;
-  margin-bottom:5rem;
-}
-.movers{
-  display:flex;
-  flex-wrap:wrap;
-  justify-content: center;
-  align-items:center;
-  gap:1rem;
-}
-.mover{
-  padding:1rem;
-  box-shadow:1px 1px 3px rgba(0,0,0,0.2)
-}
-.mover button, .general-button{
-  /* width:100%; 
-  background-color: #fff;
-  border:1px solid black;
-  padding:.5rem;
-  border-radius:2vmax;
-  margin:2rem auto;
-  display:flex;
-  align-items: flex-end;
-  justify-content:flex-end;
+footer::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, #022350, #3e92cc, #022350);
 }
 
-.mover button:hover,  .general-button:hover{
-  transform:scale(1.1);
-  background-color: #000;
-  color:#fff;
-  transition:all .2s linear;
-}
-
-
-
-.search select{
-  width:50vw;
-  display:flex;
-  flex-direction:column;
-  justify-content: center;
-  align-items:center;
-  padding:.5rem;
-
-}
-
-.search button, .course-container button{
-  padding:.5rem;
-  margin:.5rem 0;
-  background-color: #fff;
-  border:1px solid black;
-  padding:.5rem;
-  border-radius:2vmax;
-}
-
-.search button:hover, .course-container button:hover{
-  transform:scale(1.1);
-  background-color: #000;
-  color:#fff;
-  transition:all .2s linear;
-}
-
-.general-market{
-  width:80vw;
-  margin:2.5rem auto;
-}
-
-
-
-.details,.verdict,.event{
-  width:100%;
-  margin:1.5rem 0;
-  display:flex;
-  flex-direction: column;
-  justify-content: space-around;
-}
-
-.related-articles{
-  margin:2.5rem auto;
-  position: relative;
-}
-
-.tooltip{
-  width:100%;
-  display:flex;
-  justify-content: space-between;
-}
-.details-container .details span:first-child{
-  color:#595959;
-  font-weight: 100;
-}
-
-.verdict div p span:first-child, .verdict div span:first-child{
-  line-height: 2rem;
-  font-weight:bold;
-  font-size:0.7rem;
-}
-
-
-
-.details{
-  width:100%;
-}
-
-.related-articles{
-  width:100%
-}
-
-.course-container{
-  max-width:400px;
-  display:flex;
-  flex-wrap: wrap;
-  justify-content: space-around;
-  align-items:center;
-  padding:1rem;
-  box-shadow: 1px 1px 4px rgba(0,0,0,0.2);
-  margin:1rem;
-}
-
-/* .course-container:hover{
-  transform:scale(1.1);
-  transition:all .2s ease-in-out;
-} */
-
-/* .course-title{
+footer .main-div {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1.5rem;
   text-align: center;
-  font-weight:bold;
-  font-size:1.5rem;
 }
 
-.course-credits{
-  text-align:center;
+footer h2 {
+  font-size: 1.4rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
+  color: #fff;
 }
 
-.course-image{
-  width:150px;
-  height:150px;
-} 
-
-footer{
-  width:100vw;
-  background-color: #022350; padding: 20px; text-align: center; font-family: Arial, sans-serif;
-  color:white;
-  position:relative;
-  bottom:0;
-  left:0;
+footer p {
+  font-size: 1rem;
+  line-height: 1.6;
+  color: rgba(255, 255, 255, 0.8);
+  margin-bottom: 0.75rem;
+  max-width: 700px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
-footer .main-div{
- max-width: 800px; margin:auto; color:#fff;
+footer p:last-child {
+  font-weight: 500;
+  letter-spacing: 0.5px;
+  color: #fff;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  padding-top: 1rem;
+  margin-top: 1rem;
+  font-size: 0.9rem;
 }
 
-footer .main-div h2{
-  font-size: 1.5em;
-}
-footer .main-div p{
-  font-weight: bold;  margin: 20px 0;
-}
-
-footer .main-div p:nth-child(2){
-  font-size: 1em; margin: 10px 0;
-}
-
-
-
-
-@media only screen and (min-width: 986px) {
-  .details-container{
-    flex-direction: column;
+/* Responsive styles */
+@media (max-width: 768px) {
+  footer {
+    padding: 1.5rem 0;
+    margin-top: 2rem;
   }
-
-    .details,.verdict,.event{
-      width:40%;
-    }
-
-    .related-articles{
-      width:40%;
-      position: absolute;
-      top: 0;
-      right: 0;
-    }
-} */
+  
+  footer h2 {
+    font-size: 1.2rem;
+  }
+  
+  footer p {
+    font-size: 0.9rem;
+  }
+}

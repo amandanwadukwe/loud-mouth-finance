@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import savingsJar from '../resources/savingsJar.svg';
+import '../styles/SavingsSeries.css'; 
 
 const courses = [{
   "title": "Money Master Class",
