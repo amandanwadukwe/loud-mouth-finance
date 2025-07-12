@@ -547,6 +547,33 @@
   color: #495057;
   margin: 0;
 }
+/* Add these styles to your BankStatementUploader.css file */
+.currency-indicator {
+  background-color: #f5f7ff;
+  padding: 12px 15px;
+  border-radius: 6px;
+  margin-bottom: 20px;
+  border-left: 4px solid #4a6cf7;
+}
+
+.currency-title {
+  margin: 0 0 5px;
+  font-size: 16px;
+}
+
+.currency-note {
+  margin: 0;
+  font-size: 14px;
+  color: #666;
+}
+
+.export-button.excel {
+  background-color: #217346;
+}
+
+.export-button.excel:hover {
+  background-color: #1a5c38;
+}
   /* Responsive adjustments */
   @media (max-width: 768px) {
     .uploader-title {
