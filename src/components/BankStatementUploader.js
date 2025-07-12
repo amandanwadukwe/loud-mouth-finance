@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import '../styles/BankStatementUploader.css'; // Assuming you'll create this CSS file
+import '../styles/BankStatementUploader.css';
 
 const BankStatementUploader = () => {
   const [files, setFiles] = useState([]);
@@ -8,6 +8,7 @@ const BankStatementUploader = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [summary, setSummary] = useState(null);
   const [error, setError] = useState(null);
+  const [activeCategory, setActiveCategory] = useState(null);
 
   // Clean up object URLs when component unmounts or files change
   useEffect(() => {
@@ -60,10 +61,9 @@ const BankStatementUploader = () => {
       files.forEach(file => {
         formData.append('images', file);
       });
-      //https://amandanwadukwe.a2hosted.com/loud-mouth-finance#
 
       const response = await axios.post(
-        'https://amandanwadukwe.a2hosted.com/loud-mouth-finance/api/summarize-bank-statement', // Updated correct endpoint
+        'https://amandanwadukwe.a2hosted.com/loud-mouth-finance/api/summarize-bank-statement',
         formData, 
         {
           headers: {
@@ -101,6 +101,24 @@ const BankStatementUploader = () => {
       style: 'currency',
       currency: 'USD'
     }).format(amount || 0);
+  };
+
+  const formatDate = (dateString) => {
+    if (!dateString) return '';
+    const date = new Date(dateString);
+    return date.toLocaleDateString('en-US', {
+      year: 'numeric',
+      month: 'short',
+      day: 'numeric'
+    });
+  };
+
+  const toggleCategory = (category) => {
+    if (activeCategory === category) {
+      setActiveCategory(null);
+    } else {
+      setActiveCategory(category);
+    }
   };
 
   return (
@@ -180,33 +198,101 @@ const BankStatementUploader = () => {
         <div className="summary-container">
           <h2 className="summary-title">Statement Summary</h2>
           
+          {summary.statementPeriod && (
+            <div className="statement-period">
+              <h3 className="section-title">Statement Period</h3>
+              <p className="period-dates">
+                {formatDate(summary.statementPeriod.startDate)} - {formatDate(summary.statementPeriod.endDate)}
+              </p>
+            </div>
+          )}
+          
           <div className="summary-grid">
             <div className="summary-card">
               <h3 className="summary-card-title">Total Income</h3>
-              <p className="summary-card-value income">{formatCurrency(summary.totalIncome)}</p>
+              <p className="summary-card-value income">{formatCurrency(summary.summary?.totalIncome || summary.totalIncome)}</p>
             </div>
             
             <div className="summary-card">
               <h3 className="summary-card-title">Total Expenses</h3>
-              <p className="summary-card-value expense">{formatCurrency(summary.totalExpenses)}</p>
+              <p className="summary-card-value expense">{formatCurrency(summary.summary?.totalExpenses || summary.totalExpenses)}</p>
             </div>
             
             <div className="summary-card">
               <h3 className="summary-card-title">Net Cash Flow</h3>
-              <p className={`summary-card-value ${summary.totalIncome - summary.totalExpenses >= 0 ? 'income' : 'expense'}`}>
-                {formatCurrency(summary.totalIncome - summary.totalExpenses)}
+              <p className={`summary-card-value ${(summary.summary?.netCashflow || (summary.summary?.totalIncome - summary.summary?.totalExpenses) || (summary.totalIncome - summary.totalExpenses)) >= 0 ? 'income' : 'expense'}`}>
+                {formatCurrency(summary.summary?.netCashflow || (summary.summary?.totalIncome - summary.summary?.totalExpenses) || (summary.totalIncome - summary.totalExpenses))}
               </p>
             </div>
             
             <div className="summary-card">
               <h3 className="summary-card-title">Transaction Count</h3>
-              <p className="summary-card-value">{summary.transactionCount}</p>
+              <p className="summary-card-value">{summary.summary?.transactionCount || summary.transactionCount}</p>
             </div>
+            
+            {summary.summary?.averageTransaction && (
+              <div className="summary-card">
+                <h3 className="summary-card-title">Average Transaction</h3>
+                <p className="summary-card-value">{formatCurrency(summary.summary.averageTransaction)}</p>
+              </div>
+            )}
           </div>
 
-          <div className="transaction-types">
-            <h3 className="section-title">Frequent Transaction Types</h3>
-            {summary.frequentTransactionTypes?.length > 0 ? (
+          {/* Categorized Transactions Section */}
+          {summary.categorizedTransactions && (
+            <div className="transactions-section">
+              <h3 className="section-title">Transaction Categories</h3>
+              
+              <div className="category-tabs">
+                {Object.keys(summary.categorizedTransactions).map(category => (
+                  summary.categorizedTransactions[category].length > 0 && (
+                    <button 
+                      key={category}
+                      className={`category-tab ${activeCategory === category ? 'active' : ''}`}
+                      onClick={() => toggleCategory(category)}
+                    >
+                      {category.charAt(0).toUpperCase() + category.slice(1)}
+                      <span className="category-count">{summary.categorizedTransactions[category].length}</span>
+                    </button>
+                  )
+                ))}
+              </div>
+              
+              {activeCategory && summary.categorizedTransactions[activeCategory]?.length > 0 && (
+                <div className="category-transactions">
+                  <div className="table-container">
+                    <table className="transactions-table">
+                      <thead>
+                        <tr>
+                          <th>Date</th>
+                          <th>Description</th>
+                          <th>Amount</th>
+                          {activeCategory === 'subscriptions' && <th>Frequency</th>}
+                        </tr>
+                      </thead>
+                      <tbody>
+                        {summary.categorizedTransactions[activeCategory].map((transaction, index) => (
+                          <tr key={index}>
+                            <td>{formatDate(transaction.date)}</td>
+                            <td>{transaction.description}</td>
+                            <td className={`transaction-amount ${transaction.amount < 0 ? 'expense' : 'income'}`}>
+                              {formatCurrency(transaction.amount)}
+                            </td>
+                            {activeCategory === 'subscriptions' && <td>{transaction.frequency}</td>}
+                          </tr>
+                        ))}
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              )}
+            </div>
+          )}
+
+          {/* Legacy display for frequentTransactionTypes if using old data structure */}
+          {!summary.categorizedTransactions && summary.frequentTransactionTypes?.length > 0 && (
+            <div className="transaction-types">
+              <h3 className="section-title">Frequent Transaction Types</h3>
               <div className="tags-container">
                 {summary.frequentTransactionTypes.map((type, index) => (
                   <span key={index} className="transaction-tag">
@@ -214,29 +300,56 @@ const BankStatementUploader = () => {
                   </span>
                 ))}
               </div>
-            ) : (
-              <p className="no-data">No frequent transaction types identified</p>
-            )}
-          </div>
+            </div>
+          )}
 
-          {summary.unusualTransactions?.length > 0 && (
+          {/* Top Expense Categories Section */}
+          {summary.insights?.topExpenseCategories?.length > 0 && (
+            <div className="insights-section">
+              <h3 className="section-title">Top Expense Categories</h3>
+              <div className="expense-categories">
+                {summary.insights.topExpenseCategories.map((category, index) => (
+                  <div key={index} className="expense-category">
+                    <div className="category-header">
+                      <span className="category-name">{category.category}</span>
+                      <span className="category-amount">{formatCurrency(category.amount)}</span>
+                    </div>
+                    <div className="category-bar-container">
+                      <div 
+                        className="category-bar" 
+                        style={{width: `${category.percentOfTotal}%`}}
+                      ></div>
+                    </div>
+                    <span className="category-percent">{category.percentOfTotal.toFixed(1)}%</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+          )}
+
+          {/* Unusual Transactions Section */}
+          {(summary.insights?.unusualTransactions?.length > 0 || summary.unusualTransactions?.length > 0) && (
             <div className="unusual-transactions">
               <h3 className="section-title">Unusual Transactions</h3>
               <div className="table-container">
                 <table className="transactions-table">
                   <thead>
                     <tr>
+                      <th>Date</th>
                       <th>Description</th>
                       <th>Amount</th>
+                      {summary.insights?.unusualTransactions?.[0]?.reason && <th>Reason</th>}
                     </tr>
                   </thead>
                   <tbody>
-                    {summary.unusualTransactions.map((transaction, index) => (
+                    {(summary.insights?.unusualTransactions || summary.unusualTransactions).map((transaction, index) => (
                       <tr key={index}>
+                        <td>{formatDate(transaction.date)}</td>
                         <td>{transaction.description}</td>
                         <td className={`transaction-amount ${transaction.amount < 0 ? 'expense' : 'income'}`}>
                           {formatCurrency(transaction.amount)}
                         </td>
+                        {transaction.reason && <td>{transaction.reason}</td>}
                       </tr>
                     ))}
                   </tbody>
@@ -245,26 +358,80 @@ const BankStatementUploader = () => {
             </div>
           )}
 
+          {/* Recurring Payments Section */}
+          {summary.insights?.recurringPayments?.length > 0 && (
+            <div className="recurring-payments">
+              <h3 className="section-title">Recurring Payments</h3>
+              <div className="table-container">
+                <table className="transactions-table">
+                  <thead>
+                    <tr>
+                      <th>Description</th>
+                      <th>Amount</th>
+                      <th>Frequency</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {summary.insights.recurringPayments.map((payment, index) => (
+                      <tr key={index}>
+                        <td>{payment.description}</td>
+                        <td className="transaction-amount expense">
+                          {formatCurrency(payment.amount)}
+                        </td>
+                        <td>{payment.frequency}</td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          )}
+
+          {/* Savings Opportunities Section */}
+          {summary.insights?.savingsOpportunities?.length > 0 && (
+            <div className="savings-opportunities">
+              <h3 className="section-title">Savings Opportunities</h3>
+              <div className="opportunities-container">
+                {summary.insights.savingsOpportunities.map((opportunity, index) => (
+                  <div key={index} className="opportunity-card">
+                    <div className="opportunity-header">
+                      <span className="opportunity-category">{opportunity.category}</span>
+                      <span className="opportunity-amount">{formatCurrency(opportunity.potentialSavings)}</span>
+                    </div>
+                    <p className="opportunity-suggestion">{opportunity.suggestion}</p>
+                  </div>
+                ))}
+              </div>
+            </div>
+          )}
+
+          {/* General Financial Insights */}
           <div className="insights-section">
             <h3 className="section-title">Financial Insights</h3>
             <div className="insights-container">
-              {summary.totalIncome > summary.totalExpenses ? (
+              {(summary.summary?.totalIncome || summary.totalIncome) > (summary.summary?.totalExpenses || summary.totalExpenses) ? (
                 <div className="insight positive">
                   <span className="insight-icon">✅</span>
-                  <p>Your income exceeds your expenses by {formatCurrency(summary.totalIncome - summary.totalExpenses)}, which is positive for your financial health.</p>
+                  <p>Your income exceeds your expenses by {formatCurrency((summary.summary?.totalIncome || summary.totalIncome) - (summary.summary?.totalExpenses || summary.totalExpenses))}, which is positive for your financial health.</p>
                 </div>
               ) : (
                 <div className="insight negative">
                   <span className="insight-icon">⚠️</span>
-                  <p>Your expenses exceed your income by {formatCurrency(Math.abs(summary.totalIncome - summary.totalExpenses))}, which may be a concern.</p>
+                  <p>Your expenses exceed your income by {formatCurrency(Math.abs((summary.summary?.totalIncome || summary.totalIncome) - (summary.summary?.totalExpenses || summary.totalExpenses)))}, which may be a concern.</p>
                 </div>
               )}
               
-              {/* Additional insights based on transaction data */}
-              {summary.frequentTransactionTypes?.includes("Dining") && (
+              {summary.categorizedTransactions?.subscriptions?.length > 0 && (
+                <div className="insight neutral">
+                  <span className="insight-icon">🔄</span>
+                  <p>You have {summary.categorizedTransactions.subscriptions.length} active subscriptions totaling {formatCurrency(summary.categorizedTransactions.subscriptions.reduce((sum, sub) => sum + Math.abs(sub.amount), 0))} per month.</p>
+                </div>
+              )}
+              
+              {summary.categorizedTransactions?.dining?.length > 0 && (
                 <div className="insight neutral">
                   <span className="insight-icon">🍽️</span>
-                  <p>You have frequent dining expenses. Consider setting a budget for eating out.</p>
+                  <p>You spent {formatCurrency(summary.categorizedTransactions.dining.reduce((sum, item) => sum + Math.abs(item.amount), 0))} on dining out.</p>
                 </div>
               )}
             </div>

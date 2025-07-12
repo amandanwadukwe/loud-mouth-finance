@@ -431,7 +431,122 @@
     max-height: 300px;
     overflow-y: auto;
   }
-  
+  /* Category tabs styling */
+.category-tabs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 16px;
+}
+
+.category-tab {
+  padding: 8px 16px;
+  background-color: #f0f0f0;
+  border: none;
+  border-radius: 20px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  font-weight: 500;
+  transition: all 0.2s ease;
+}
+
+.category-tab.active {
+  background-color: #007bff;
+  color: white;
+}
+
+.category-count {
+  background-color: rgba(0,0,0,0.1);
+  border-radius: 10px;
+  padding: 2px 8px;
+  margin-left: 8px;
+  font-size: 0.8em;
+}
+
+/* Top expense categories styling */
+.expense-categories {
+  margin-top: 16px;
+}
+
+.expense-category {
+  margin-bottom: 12px;
+}
+
+.category-header {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 4px;
+}
+
+.category-bar-container {
+  height: 8px;
+  background-color: #eee;
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.category-bar {
+  height: 100%;
+  background-color: #007bff;
+  border-radius: 4px;
+}
+
+.category-percent {
+  font-size: 0.8em;
+  color: #666;
+}
+
+/* Opportunities styling */
+.opportunities-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 16px;
+  margin-top: 16px;
+}
+
+.opportunity-card {
+  background-color: #f8f9fa;
+  border-radius: 8px;
+  padding: 16px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+}
+
+.opportunity-header {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 8px;
+}
+
+.opportunity-category {
+  font-weight: 600;
+}
+
+.opportunity-amount {
+  color: #28a745;
+  font-weight: 600;
+}
+
+.opportunity-suggestion {
+  color: #495057;
+  font-size: 0.9em;
+  line-height: 1.4;
+}
+
+/* Statement period styling */
+.statement-period {
+  background-color: #f8f9fa;
+  border-radius: 8px;
+  padding: 12px 16px;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.period-dates {
+  font-weight: 500;
+  color: #495057;
+  margin: 0;
+}
   /* Responsive adjustments */
   @media (max-width: 768px) {
     .uploader-title {
